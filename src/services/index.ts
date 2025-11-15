@@ -1,6 +1,6 @@
 import { getUserByEmailService, getUserByUsernameService, getUserService, getUserByIdService, getUserDetailByUsernameService } from './user/user.service';
 import { postRegisterService } from './auth/auth.service';
-import { getProfileByIdService } from './profile/profile.service'
+import { getProfileByIdService, updateProfileByIdService } from './profile/profile.service'
 
 export {
   getUserByEmailService,
@@ -9,5 +9,6 @@ export {
   getUserByIdService,
   getProfileByIdService,
   getUserByUsernameService,
-  getUserDetailByUsernameService
+  getUserDetailByUsernameService,
+  updateProfileByIdService
 }
