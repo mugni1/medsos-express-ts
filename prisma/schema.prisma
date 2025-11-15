@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String   @id @default(uuid())
+  name            String?  @db.VarChar(50)
+  username        String   @unique @db.VarChar(20)
+  email           String   @unique @db.VarChar(255)
+  password        String   @db.Text
+  avatar          String?  @db.Text
+  bio             String?  @db.Text
+  followingCount  Int      @default(0)
+  postCount       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  posts           Post[]
+  comments        Comment[]
+  likes           Like[]
+  followers       Follow[] @relation("Followers")
+  following       Follow[] @relation("Following")
+}
+
+model Post {
+  id              String   @id @default(uuid())
+  image           String?  @db.Text
+  content         String   @db.Text
+  userId          String   @db.Text
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  likeCount       Int      @default(0)
+  commentCount    Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  comments        Comment[]
+  likes           Like[]
+}
+
+model Comment {
+  id              String   @id @default(uuid())
+  content         String   @db.Text
+  userId          String   @db.Text
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  postId          String   @db.Text
+  post            Post     @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Like {
+  userId          String   @db.Text
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  postId          String   @db.Text
+  post            Post     @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  @@id([userId, postId])
+}
+
+model Follow {
+  followerId      String   @db.Text
+  followingId     String   @db.Text
+  follower        User     @relation("Followers", fields: [followerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  following       User     @relation("Following", fields: [followingId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  @@id([followerId, followingId])
+}
