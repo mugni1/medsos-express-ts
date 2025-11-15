@@ -1,5 +1,5 @@
 import express from "express";
-import { authRoute, profileRoute, userRoute } from "./src/routes";
+import { authRoute, profileRoute, uploadRoute, userRoute } from "./src/routes";
 import { API_VERSION } from "./utils/api-version";
 import { config } from "dotenv";
 config()
@@ -13,6 +13,7 @@ app.get('/', (_, res) => { res.json({ message: 'Hello, World!' }) });
 app.use(`${API_VERSION}/auth`, authRoute)
 app.use(`${API_VERSION}/`, profileRoute)
 app.use(`${API_VERSION}/`, userRoute)
+app.use(`${API_VERSION}/`, uploadRoute)
 
 // listen server
 const HOST = process.env.HOST_APP || '0.0.0.0';
