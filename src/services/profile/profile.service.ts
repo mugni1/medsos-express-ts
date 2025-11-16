@@ -12,10 +12,11 @@ export const getProfileByIdService = async ({ id }: { id: string }) => {
   });
 };
 
-export const updateProfileByIdService = async ({ id, name, username, bio }: {
+export const updateProfileByIdService = async ({ id, name, username, avatar, bio }: {
   id: string,
   name: string,
-  username: string,
+  username?: string,
+  avatar?: string,
   bio: string
 }) => {
   return await prisma.user.update({
@@ -25,8 +26,9 @@ export const updateProfileByIdService = async ({ id, name, username, bio }: {
     },
     data: {
       name,
-      username,
       bio,
+      username,
+      avatar
     },
   });
 }

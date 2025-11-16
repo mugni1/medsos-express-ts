@@ -31,14 +31,16 @@ export const updateProfile = async (req: Request, res: Response) => {
   }
 
   // check username exists
-  const existUsername = await getUserByUsernameService(dataProfile.username);
-  if (existUsername) {
-    return response({ res, status: 409, message: "Username already exists" });
+  if (dataProfile.username) {
+    const existUsername = await getUserByUsernameService(dataProfile.username);
+    if (existUsername) {
+      return response({ res, status: 409, message: "Username already exists" });
+    }
   }
 
   // update
   try {
-    const users = await updateProfileByIdService({ id: user_id, name: dataProfile.name, username: dataProfile.username, bio: dataProfile.bio })
+    const users = await updateProfileByIdService({ id: user_id, name: dataProfile.name, username: dataProfile.username, avatar: dataProfile.avatar, bio: dataProfile.bio })
     response({ res, status: 200, message: "Profile updated successfully", data: users });
   } catch (error) {
     response({ res, status: 500, message: "Internal server error", errors: error });
