@@ -1,10 +1,10 @@
 import { GetUsersParams } from "../../../types/user.type";
 import prisma from "../../config/prisma";
 
-export const getUserService = async ({ sort_by, order_by, search, offset, limit }: GetUsersParams) => {
+export const getUserService = async ({ sortBy, orderBy, search, offset, limit }: GetUsersParams) => {
   return await prisma.user.findMany({
     orderBy: {
-      [sort_by]: order_by
+      [sortBy]: orderBy
     },
     skip: offset,
     take: limit,

@@ -7,13 +7,13 @@ export const getUsers = async (req: GetUserQueryParams, res: Response) => {
   const page = req.query.page || "1";
   const limit = req.query.limit || "10";
   const search = req.query.search || "";
-  const order_by = req.query.order_by || "asc";
-  const sort_by = req.query.sort_by || "id";
+  const orderBy = req.query.orderBy || "asc";
+  const sortBy = req.query.sortBy || "id";
   const offset = (parseInt(page) - 1) * parseInt(limit);
 
   try {
-    const users = await getUserService({ order_by, sort_by, search, offset, limit: parseInt(limit) });
-    const meta = { total: users.length, page: parseInt(page), limit: parseInt(limit), offset, order_by, sort_by, search };
+    const users = await getUserService({ orderBy, sortBy, search, offset, limit: parseInt(limit) });
+    const meta = { total: users.length, page: parseInt(page), limit: parseInt(limit), offset, orderBy, sortBy, search };
     response({ res, status: 200, message: "Users fetched successfully", data: users, meta })
   } catch (error: any) {
     response({ res, status: 500, message: "Internal Server Error" })

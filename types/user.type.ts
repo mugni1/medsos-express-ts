@@ -3,8 +3,8 @@ import { Request } from 'express';
 export interface GetUsersParams {
   limit: number;
   search: string;
-  order_by: "asc" | "desc";
-  sort_by: string;
+  orderBy: "asc" | "desc";
+  sortBy: string;
   offset: number;
 }
 
@@ -14,7 +14,7 @@ export interface GetUserQueryParams extends Request {
     page?: string;
     limit?: string;
     search?: string;
-    order_by?: "asc" | "desc";
-    sort_by?: string;
+    orderBy?: "asc" | "desc";
+    sortBy?: string;
   };
 }
