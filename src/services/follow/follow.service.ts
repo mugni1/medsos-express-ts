@@ -10,6 +10,17 @@ export const followService = async ({ current_user_id, other_user_id }: { curren
   });
 };
 
+export const unfollowService = async ({ current_user_id, other_user_id }: { current_user_id: string, other_user_id: string }) => {
+  return await prisma.follow.delete({
+    where: {
+      followerId_followingId: {
+        followerId: other_user_id,
+        followingId: current_user_id
+      }
+    }
+  })
+}
+
 export const updateFollowingCountService = async ({ user_id, methode }: { user_id: string; methode: 'increment' | 'decrement' }) => {
   return await prisma.user.update({
     where: {
