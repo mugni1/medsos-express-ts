@@ -29,10 +29,9 @@ export const follow = async (req: Request, res: Response) => {
     if (!follow) {
       return response({ res, status: 400, message: "Failed to follow" });
     }
-    const updatedFollowerCount = await updateFollowerCountService({ user_id: other_user_id });
-    const updatedFollowingCount = await updateFollowingCountService({ user_id: current_user_id });
-
-    return response({ res, status: 200, message: "Followed successfully", data: { current_user: updatedFollowingCount, other_user: updatedFollowerCount, } });
+    await updateFollowerCountService({ user_id: other_user_id, methode: 'increment' });
+    const results = await updateFollowingCountService({ user_id: current_user_id, methode: 'increment' });
+    return response({ res, status: 200, message: "Followed successfully", data: results });
   } catch (error) {
     return response({ res, status: 500, message: "Failed to follow" });
   }

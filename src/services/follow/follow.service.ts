@@ -10,24 +10,24 @@ export const followService = async ({ current_user_id, other_user_id }: { curren
   });
 };
 
-export const updateFollowingCountService = async ({ user_id }: { user_id: string }) => {
+export const updateFollowingCountService = async ({ user_id, methode }: { user_id: string; methode: 'increment' | 'decrement' }) => {
   return await prisma.user.update({
     where: {
       id: user_id
     },
     data: {
-      followingCount: { increment: 1 }
+      followingCount: { [methode]: 1 }
     }
   });
 };
 
-export const updateFollowerCountService = async ({ user_id }: { user_id: string }) => {
+export const updateFollowerCountService = async ({ user_id, methode }: { user_id: string; methode: 'increment' | 'decrement' }) => {
   return await prisma.user.update({
     where: {
       id: user_id
     },
     data: {
-      followerCount: { increment: 1 }
+      followerCount: { [methode]: 1 }
     }
   });
 };
