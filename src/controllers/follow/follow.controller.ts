@@ -1,5 +1,12 @@
 import { Request, Response } from "express";
-import { checkFollowService, followService, getUserByIdService, unfollowService, updateFollowerCountService, updateFollowingCountService } from "../../services";
+import {
+  checkFollowService,
+  followService,
+  getUserByIdService,
+  unfollowService,
+  updateFollowerCountService,
+  updateFollowingCountService
+} from "../../services";
 import { response } from "../../../utils/response";
 
 export const follow = async (req: Request, res: Response) => {

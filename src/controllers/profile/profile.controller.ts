@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
 import { response } from "../../../utils/response";
-import { getProfileByIdService, getUserByUsernameService, updateProfileByIdService, getProfileDetailByIdService } from "../../services";
+import {
+  getProfileByIdService,
+  getUserByUsernameService,
+  updateProfileByIdService,
+  getProfileDetailByIdService
+} from "../../services";
 import { updateProfileSchema } from "../../validations";
 
 export const getProfile = async (req: Request, res: Response) => {
@@ -21,6 +26,7 @@ export const getProfileDetail = async (req: Request, res: Response) => {
   if (!user_id) {
     return response({ res, status: 401, message: "Unauthorized" });
   }
+
   try {
     const user = await getProfileDetailByIdService({ id: user_id });
     response({ res, status: 200, message: "Profile detail fetched successfully", data: user, errors: null });
@@ -53,7 +59,13 @@ export const updateProfile = async (req: Request, res: Response) => {
 
   // update
   try {
-    const users = await updateProfileByIdService({ id: user_id, name: dataProfile.name, username: dataProfile.username, avatar: dataProfile.avatar, bio: dataProfile.bio })
+    const users = await updateProfileByIdService({
+      id: user_id,
+      name: dataProfile.name,
+      username: dataProfile.username,
+      avatar: dataProfile.avatar,
+      bio: dataProfile.bio
+    });
     response({ res, status: 200, message: "Profile updated successfully", data: users });
   } catch (error) {
     response({ res, status: 500, message: "Internal server error", errors: error });
