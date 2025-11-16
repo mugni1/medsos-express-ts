@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import { response } from "../../../utils/response";
-import { getProfileByIdService, getUserByUsernameService, updateProfileByIdService } from "../../services";
+import { getProfileByIdService, getUserByUsernameService, updateProfileByIdService, getDetailProfileByIdService } from "../../services";
 import { updateProfileSchema } from "../../validations";
-import { getDetailProfileByIdService } from "../../services/profile/profile.service";
 
 export const getProfile = async (req: Request, res: Response) => {
   const user_id = req.user_id;
