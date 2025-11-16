@@ -1,30 +1,30 @@
 import prisma from "../../config/prisma";
 
 
-export const followService = async ({ current_user_id, other_user_id }: { current_user_id: string, other_user_id: string }) => {
+export const followService = async ({ currentUserId, otherUserId }: { currentUserId: string, otherUserId: string }) => {
   return await prisma.follow.create({
     data: {
-      followerId: other_user_id,
-      followingId: current_user_id
+      followerId: otherUserId,
+      followingId: currentUserId
     }
   });
 };
 
-export const unfollowService = async ({ current_user_id, other_user_id }: { current_user_id: string, other_user_id: string }) => {
+export const unfollowService = async ({ currentUserId, otherUserId }: { currentUserId: string, otherUserId: string }) => {
   return await prisma.follow.delete({
     where: {
       followerId_followingId: {
-        followerId: other_user_id,
-        followingId: current_user_id
+        followerId: otherUserId,
+        followingId: currentUserId
       }
     }
   })
 }
 
-export const updateFollowingCountService = async ({ user_id, methode }: { user_id: string; methode: 'increment' | 'decrement' }) => {
+export const updateFollowingCountService = async ({ userId, methode }: { userId: string; methode: 'increment' | 'decrement' }) => {
   return await prisma.user.update({
     where: {
-      id: user_id
+      id: userId
     },
     data: {
       followingCount: { [methode]: 1 }
@@ -32,10 +32,10 @@ export const updateFollowingCountService = async ({ user_id, methode }: { user_i
   });
 };
 
-export const updateFollowerCountService = async ({ user_id, methode }: { user_id: string; methode: 'increment' | 'decrement' }) => {
+export const updateFollowerCountService = async ({ userId, methode }: { userId: string; methode: 'increment' | 'decrement' }) => {
   return await prisma.user.update({
     where: {
-      id: user_id
+      id: userId
     },
     data: {
       followerCount: { [methode]: 1 }
@@ -43,12 +43,12 @@ export const updateFollowerCountService = async ({ user_id, methode }: { user_id
   });
 };
 
-export const checkFollowService = async ({ current_user_id, other_user_id }: { current_user_id: string, other_user_id: string }) => {
+export const checkFollowService = async ({ currentUserId, otherUserId }: { currentUserId: string, otherUserId: string }) => {
   return await prisma.follow.findUnique({
     where: {
       followerId_followingId: {
-        followerId: other_user_id,
-        followingId: current_user_id
+        followerId: otherUserId,
+        followingId: currentUserId
       }
     }
   });

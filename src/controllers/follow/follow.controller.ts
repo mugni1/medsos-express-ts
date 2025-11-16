@@ -10,30 +10,31 @@ import {
 import { response } from "../../../utils/response";
 
 export const follow = async (req: Request, res: Response) => {
-  const current_user_id = req.user_id as string;
-  const other_user_id = req.params.other_user_id;
+  const currentUserId = req.user_id as string;
+  const otherUserId = req.params.otherUserId;
 
-  if (current_user_id === other_user_id) {
+  if (currentUserId === otherUserId) {
     return response({ res, status: 400, message: "Cannot follow yourself" });
   }
 
-  const existOtherUser = await getUserByIdService(other_user_id);
-  if (!existOtherUser) {
-    return response({ res, status: 404, message: "User not found" });
-  }
-
-  const isFollowing = await checkFollowService({ current_user_id, other_user_id });
-  if (isFollowing) {
-    return response({ res, status: 400, message: "Already following" });
-  }
-
   try {
-    const follow = await followService({ current_user_id, other_user_id });
+    const existOtherUser = await getUserByIdService(otherUserId);
+    if (!existOtherUser) {
+      return response({ res, status: 404, message: "User not found" });
+    }
+
+    const isFollowing = await checkFollowService({ currentUserId, otherUserId });
+    if (isFollowing) {
+      return response({ res, status: 400, message: "Already following" });
+    }
+
+    const follow = await followService({ currentUserId, otherUserId });
     if (!follow) {
       return response({ res, status: 400, message: "Failed to follow" });
     }
-    await updateFollowerCountService({ user_id: other_user_id, methode: 'increment' });
-    const results = await updateFollowingCountService({ user_id: current_user_id, methode: 'increment' });
+
+    await updateFollowerCountService({ userId: otherUserId, methode: 'increment' });
+    const results = await updateFollowingCountService({ userId: currentUserId, methode: 'increment' });
     return response({ res, status: 200, message: "Followed successfully", data: results });
   } catch (error) {
     return response({ res, status: 500, message: "Failed to follow" });
@@ -41,30 +42,31 @@ export const follow = async (req: Request, res: Response) => {
 }
 
 export const unfollow = async (req: Request, res: Response) => {
-  const current_user_id = req.user_id as string;
-  const other_user_id = req.params.other_user_id;
+  const currentUserId = req.user_id as string;
+  const otherUserId = req.params.otherUserId;
 
-  if (current_user_id === other_user_id) {
+  if (currentUserId === otherUserId) {
     return response({ res, status: 400, message: "Cannot unfollow yourself" });
   }
 
-  const existOtherUser = await getUserByIdService(other_user_id);
-  if (!existOtherUser) {
-    return response({ res, status: 404, message: "User not found" });
-  }
-
-  const isFollowing = await checkFollowService({ current_user_id, other_user_id });
-  if (!isFollowing) {
-    return response({ res, status: 400, message: "Already Unfollowed" });
-  }
-
   try {
-    const unfollow = await unfollowService({ current_user_id, other_user_id });
+    const existOtherUser = await getUserByIdService(otherUserId);
+    if (!existOtherUser) {
+      return response({ res, status: 404, message: "User not found" });
+    }
+
+    const isFollowing = await checkFollowService({ currentUserId, otherUserId });
+    if (!isFollowing) {
+      return response({ res, status: 400, message: "Already Unfollowed" });
+    }
+
+    const unfollow = await unfollowService({ currentUserId, otherUserId });
     if (!unfollow) {
       return response({ res, status: 400, message: "Failed to unfollow" });
     }
-    await updateFollowerCountService({ user_id: other_user_id, methode: 'decrement' });
-    const results = await updateFollowingCountService({ user_id: current_user_id, methode: 'decrement' });
+    
+    await updateFollowerCountService({ userId: otherUserId, methode: 'decrement' });
+    const results = await updateFollowingCountService({ userId: currentUserId, methode: 'decrement' });
     return response({ res, status: 200, message: "Unfollowed successfully", data: results });
   } catch (error) {
     return response({ res, status: 500, message: "Failed to unfollow" });

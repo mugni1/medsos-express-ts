@@ -3,7 +3,7 @@ import { authorizationMiddleware } from '../../middlewares';
 import { follow, unfollow } from '../../controllers';
 
 const router = Router();
-router.post("/follow/:other_user_id", authorizationMiddleware, follow)
-router.delete("/follow/:other_user_id", authorizationMiddleware, unfollow)
+router.post("/follow/:otherUserId", authorizationMiddleware, follow)
+router.delete("/follow/:otherUserId", authorizationMiddleware, unfollow)
 
 export default router;
