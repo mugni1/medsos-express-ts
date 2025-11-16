@@ -1,6 +1,4 @@
-import { omit } from "zod/v4/core/util.cjs";
 import prisma from "../../config/prisma";
-import { password } from "bun";
 
 export const getProfileByIdService = async ({ id }: { id: string }) => {
   return await prisma.user.findUnique({
@@ -14,7 +12,7 @@ export const getProfileByIdService = async ({ id }: { id: string }) => {
   });
 };
 
-export const getDetailProfileByIdService = async ({ id }: { id: string }) => {
+export const getProfileDetailByIdService = async ({ id }: { id: string }) => {
   return await prisma.user.findUnique({
     where: { id },
     include: {

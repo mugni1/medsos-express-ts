@@ -1,6 +1,6 @@
 import { getUserByEmailService, getUserByUsernameService, getUserService, getUserByIdService, getUserDetailByUsernameService } from './user/user.service';
 import { postRegisterService } from './auth/auth.service';
-import { getProfileByIdService, updateProfileByIdService, getDetailProfileByIdService } from './profile/profile.service'
+import { getProfileByIdService, updateProfileByIdService, getProfileDetailByIdService } from './profile/profile.service'
 import { checkFollowService, followService, updateFollowerCountService, updateFollowingCountService, unfollowService } from './follow/follow.service'
 
 export {
@@ -9,6 +9,7 @@ export {
   postRegisterService,
   getUserByIdService,
   getProfileByIdService,
+  getProfileDetailByIdService,
   getUserByUsernameService,
   getUserDetailByUsernameService,
   updateProfileByIdService,
@@ -16,6 +17,5 @@ export {
   followService,
   updateFollowerCountService,
   updateFollowingCountService,
-  getDetailProfileByIdService,
   unfollowService
 }
