@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { response } from "../../../utils/response";
 import { getProfileByIdService, getUserByUsernameService, updateProfileByIdService } from "../../services";
 import { updateProfileSchema } from "../../validations";
+import { getDetailProfileByIdService } from "../../services/profile/profile.service";
 
 export const getProfile = async (req: Request, res: Response) => {
   const user_id = req.user_id;
@@ -11,6 +12,19 @@ export const getProfile = async (req: Request, res: Response) => {
   try {
     const user = await getProfileByIdService({ id: user_id });
     response({ res, status: 200, message: "Profile fetched successfully", data: user, errors: null });
+  } catch (error) {
+    response({ res, status: 500, message: "Internal server error", data: null, errors: error });
+  }
+};
+
+export const getDetailProfile = async (req: Request, res: Response) => {
+  const user_id = req.user_id;
+  if (!user_id) {
+    return response({ res, status: 401, message: "Unauthorized" });
+  }
+  try {
+    const user = await getDetailProfileByIdService({ id: user_id });
+    response({ res, status: 200, message: "Profile detail fetched successfully", data: user, errors: null });
   } catch (error) {
     response({ res, status: 500, message: "Internal server error", data: null, errors: error });
   }

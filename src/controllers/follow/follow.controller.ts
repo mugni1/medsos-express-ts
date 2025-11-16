@@ -10,6 +10,10 @@ export const follow = async (req: Request, res: Response) => {
     return response({ res, status: 400, message: "Please provide a valid other_user_id" });
   }
 
+  if (current_user_id === other_user_id) {
+    return response({ res, status: 400, message: "Cannot follow yourself" });
+  }
+
   const existOtherUser = await getUserByIdService(other_user_id);
   if (!existOtherUser) {
     return response({ res, status: 404, message: "User not found" });
