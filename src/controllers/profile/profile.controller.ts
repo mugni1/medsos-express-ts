@@ -9,34 +9,35 @@ import {
 import { updateProfileSchema } from "../../validations";
 
 export const getProfile = async (req: Request, res: Response) => {
-  const user_id = req.user_id;
-  if (!user_id) {
+  const userId = req.user_id;
+  if (!userId) {
     return response({ res, status: 401, message: "Unauthorized" });
   }
+  
   try {
-    const user = await getProfileByIdService({ id: user_id });
-    response({ res, status: 200, message: "Profile fetched successfully", data: user, errors: null });
+    const user = await getProfileByIdService({ id: userId });
+    response({ res, status: 200, message: "Profile fetched successfully", data: user });
   } catch (error) {
-    response({ res, status: 500, message: "Internal server error", data: null, errors: error });
+    response({ res, status: 500, message: "Internal server error", errors: error });
   }
 };
 
 export const getProfileDetail = async (req: Request, res: Response) => {
-  const user_id = req.user_id;
-  if (!user_id) {
+  const userId = req.user_id;
+  if (!userId) {
     return response({ res, status: 401, message: "Unauthorized" });
   }
 
   try {
-    const user = await getProfileDetailByIdService({ id: user_id });
-    response({ res, status: 200, message: "Profile detail fetched successfully", data: user, errors: null });
+    const user = await getProfileDetailByIdService({ id: userId });
+    response({ res, status: 200, message: "Profile detail fetched successfully", data: user });
   } catch (error) {
-    response({ res, status: 500, message: "Internal server error", data: null, errors: error });
+    response({ res, status: 500, message: "Internal server error", errors: error });
   }
 };
 
 export const updateProfile = async (req: Request, res: Response) => {
-  const user_id = req.user_id as string;
+  const userId = req.user_id as string;
   const reqBody = req.body;
 
   // validate
@@ -60,7 +61,7 @@ export const updateProfile = async (req: Request, res: Response) => {
   // update
   try {
     const users = await updateProfileByIdService({
-      id: user_id,
+      id: userId,
       name: dataProfile.name,
       username: dataProfile.username,
       avatar: dataProfile.avatar,
