@@ -24,7 +24,7 @@ export const getUsers = async (req: GetUserQueryParams, res: Response) => {
 export const getRandomUsers = async (req: GetUserQueryParams, res: Response) => {
   const randomNumber = getRandomNumber(5)
   let orderBy: "asc" | "desc" = "asc";
-  let sortBy: "id" | "name" | "email" = "id";
+  let sortBy: "id" | "name" | "email" | "createdAt" = "id";
   
   if (randomNumber == 0) {
     orderBy = "desc";
@@ -40,10 +40,10 @@ export const getRandomUsers = async (req: GetUserQueryParams, res: Response) => 
     sortBy = "email";
   } else if (randomNumber == 4) {
     orderBy = "desc";
-    sortBy = "id";
+    sortBy = "createdAt";
   } else if (randomNumber == 5) {
     orderBy = "asc";
-    sortBy = "id";
+    sortBy = "createdAt";
   } else {
     orderBy = "asc";
     sortBy = "id";
