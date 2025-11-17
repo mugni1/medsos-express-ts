@@ -1,5 +1,5 @@
 import express from "express";
-import { API_VERSION } from "utils/api-version";
+import { API_VERSION } from "utils/version";
 import { config } from "dotenv";
 import {
   authRoute,
