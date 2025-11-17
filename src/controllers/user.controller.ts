@@ -21,7 +21,7 @@ export const getUsers = async (req: GetUserQueryParams, res: Response) => {
   }
 };
 
-export const getRandomUsers = async (req: GetUserQueryParams, res: Response) => {
+export const getUsersRandom = async (req: GetUserQueryParams, res: Response) => {
   const randomNumber = getRandomNumber(5)
   let orderBy: "asc" | "desc" = "asc";
   let sortBy: "id" | "name" | "email" | "createdAt" = "id";

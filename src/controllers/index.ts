@@ -1,6 +1,6 @@
 import { postRegister, postLogin } from "@/controllers/auth.controller";
 import { getProfile, getProfileDetail, updateProfile } from "@/controllers/profile.controller";
-import { getUsers, getRandomUsers, getUserByUsername } from "@/controllers/user.controller";
+import { getUsers, getUsersRandom, getUserByUsername } from "@/controllers/user.controller";
 import { uploadFile, deleteFile } from "@/controllers/upload.controller";
 import { follow, unfollow, getFollowers } from "@/controllers/follow.controller";
 
@@ -10,7 +10,7 @@ export {
   getProfile,
   getProfileDetail,
   getUsers,
-  getRandomUsers,
+  getUsersRandom,
   getUserByUsername,
   updateProfile,
   uploadFile,
