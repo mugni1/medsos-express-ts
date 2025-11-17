@@ -1,6 +1,6 @@
-import prisma from "../../config/prisma"
+import prisma from "@/config/prisma"
+import { registerSchema } from "@/validations";
 import { z } from "zod";
-import { registerSchema } from "../../validations";
 
 export const postRegisterService = async (userData: z.infer<typeof registerSchema>) => {
   return await prisma.user.create({

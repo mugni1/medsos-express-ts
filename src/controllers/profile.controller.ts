@@ -1,19 +1,19 @@
 import { Request, Response } from "express";
-import { response } from "../../../utils/response";
+import { response } from "utils/response";
+import { updateProfileSchema } from "@/validations";
 import {
   getProfileByIdService,
   getUserByUsernameService,
   updateProfileByIdService,
   getProfileDetailByIdService
-} from "../../services";
-import { updateProfileSchema } from "../../validations";
+} from "@/services";
 
 export const getProfile = async (req: Request, res: Response) => {
   const userId = req.user_id;
   if (!userId) {
     return response({ res, status: 401, message: "Unauthorized" });
   }
-  
+
   try {
     const user = await getProfileByIdService({ id: userId });
     response({ res, status: 200, message: "Profile fetched successfully", data: user });

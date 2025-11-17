@@ -1,5 +1,5 @@
-import { GetUsersParams } from "../../../types/user.type";
-import prisma from "../../config/prisma";
+import { GetUsersParams } from "types/user.type";
+import prisma from "@/config/prisma";
 
 // export const getUserService = async ({ sortBy, orderBy, search, offset, limit }: GetUsersParams) => {
 //   const cached = await redis.get("GET_USERS_SERVICE")
@@ -92,7 +92,7 @@ export const getUserDetailByUsernameService = async ({ username }: { username: s
       posts: true,
       comments: true,
       followers: true,
-      following: true,
+      followings: true,
       likes: true,
     },
     omit: {

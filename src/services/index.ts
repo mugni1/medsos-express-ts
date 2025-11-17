@@ -1,7 +1,25 @@
-import { getUserByEmailService, getUserByUsernameService, getUserService, getUserByIdService, getUserDetailByUsernameService } from './user/user.service';
-import { postRegisterService } from './auth/auth.service';
-import { getProfileByIdService, updateProfileByIdService, getProfileDetailByIdService } from './profile/profile.service'
-import { checkFollowService, followService, updateFollowerCountService, updateFollowingCountService, unfollowService } from './follow/follow.service'
+import { postRegisterService } from '@/services/auth.service';
+import {
+  getUserByEmailService,
+  getUserByUsernameService,
+  getUserService,
+  getUserByIdService,
+  getUserDetailByUsernameService
+} from '@/services/user.service';
+import {
+  getProfileByIdService,
+  updateProfileByIdService,
+  getProfileDetailByIdService
+} from '@/services/profile.service'
+import {
+  checkFollowService,
+  followService,
+  updateFollowerCountService,
+  updateFollowingCountService,
+  unfollowService,
+  getFollowersService,
+  getFollowingsService
+} from '@/services/follow.service'
 
 export {
   getUserByEmailService,
@@ -15,7 +33,9 @@ export {
   updateProfileByIdService,
   checkFollowService,
   followService,
+  unfollowService,
+  getFollowersService,
+  getFollowingsService,
   updateFollowerCountService,
   updateFollowingCountService,
-  unfollowService
 }

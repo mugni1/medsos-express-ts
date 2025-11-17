@@ -1,7 +1,13 @@
 import express from "express";
-import { authRoute, followRoute, profileRoute, uploadRoute, userRoute } from "./src/routes";
-import { API_VERSION } from "./utils/api-version";
+import { API_VERSION } from "utils/api-version";
 import { config } from "dotenv";
+import {
+  authRoute,
+  followRoute,
+  profileRoute,
+  uploadRoute,
+  userRoute
+} from "@/routes";
 config()
 
 // init 

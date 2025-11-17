@@ -5,10 +5,11 @@ import {
   getUserByIdService,
   unfollowService,
   updateFollowerCountService,
-  updateFollowingCountService
-} from "../../services";
-import { response } from "../../../utils/response";
-import { getFollowersService, getFollowingsService } from "../../services/follow/follow.service";
+  updateFollowingCountService,
+  getFollowingsService,
+  getFollowersService
+} from "@/services";
+import { response } from "utils/response";
 
 export const getFollowers = async (req: Request, res: Response) => {
   const userId = req.user_id as string;

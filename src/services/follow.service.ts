@@ -1,4 +1,4 @@
-import prisma from "../../config/prisma";
+import prisma from "@/config/prisma";
 
 export const getFollowersService = async ({ userId }: { userId: string }) => {
   return await prisma.follow.findMany({

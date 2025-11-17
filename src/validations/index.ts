@@ -1,5 +1,5 @@
-import { registerSchema, loginSchema } from "./auth/auth.validate";
-import { updateProfileSchema } from "./profile/profile.validate";
+import { registerSchema, loginSchema } from "@/validations/auth.validate";
+import { updateProfileSchema } from "@/validations/profile.validate";
 
 export {
   loginSchema,

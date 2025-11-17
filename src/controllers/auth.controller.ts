@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { registerSchema, loginSchema } from '../../validations';
-import { getUserByEmailService, postRegisterService, getUserByUsernameService } from '../../services';
-import { response } from '../../../utils/response';
-import { comparePassword, hashedPassword } from '../../../utils/bcrypt';
-import { generateToken } from '../../../utils/jwt';
+import { registerSchema, loginSchema } from '@/validations';
+import { getUserByEmailService, postRegisterService, getUserByUsernameService } from '@/services';
+import { response } from 'utils/response';
+import { generateToken } from 'utils/jwt';
+import { comparePassword, hashedPassword } from 'utils/bcrypt';
 
 export const postRegister = async (req: Request, res: Response) => {
   const reqBody = req.body;

@@ -1,8 +1,8 @@
-import profileRoute from "./profile/profile.route";
-import authRoute from "./auth/auth.route";
-import userRoute from "./user/user.route";
-import uploadRoute from "./upload/upload.route";
-import followRoute from "./follow/follow.route";
+import profileRoute from "@/routes/profile.route";
+import authRoute from "@/routes/auth.route";
+import userRoute from "@/routes/user.route";
+import uploadRoute from "@/routes/upload.route";
+import followRoute from "@/routes/follow.route";
 
 export {
   profileRoute,

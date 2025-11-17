@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { put, del } from "@vercel/blob"
-import { response } from "../../../utils/response";
+import { response } from "utils/response";
 
 interface DeleteFileQueryParams extends Request {
   query: {
