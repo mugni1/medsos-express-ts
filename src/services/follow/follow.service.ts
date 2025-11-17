@@ -1,11 +1,44 @@
 import prisma from "../../config/prisma";
 
+export const getFollowersService = async ({ userId }: { userId: string }) => {
+  return await prisma.follow.findMany({
+    where: {
+      followingId: userId
+    },
+    include: {
+      follower: {
+        select: {
+          id: true,
+          username: true,
+          avatar: true
+        }
+      }
+    }
+  });
+};
+
+export const getFollowingsService = async ({ userId }: { userId: string }) => {
+  return await prisma.follow.findMany({
+    where: {
+      followerId: userId
+    },
+    include: {
+      following: {
+        select: {
+          id: true,
+          username: true,
+          avatar: true
+        }
+      }
+    }
+  });
+};
 
 export const followService = async ({ currentUserId, otherUserId }: { currentUserId: string, otherUserId: string }) => {
   return await prisma.follow.create({
     data: {
-      followerId: otherUserId,
-      followingId: currentUserId
+      followerId: currentUserId,
+      followingId: otherUserId
     }
   });
 };
@@ -14,8 +47,8 @@ export const unfollowService = async ({ currentUserId, otherUserId }: { currentU
   return await prisma.follow.delete({
     where: {
       followerId_followingId: {
-        followerId: otherUserId,
-        followingId: currentUserId
+        followerId: currentUserId,
+        followingId: otherUserId
       }
     }
   })
@@ -47,8 +80,8 @@ export const checkFollowService = async ({ currentUserId, otherUserId }: { curre
   return await prisma.follow.findUnique({
     where: {
       followerId_followingId: {
-        followerId: otherUserId,
-        followingId: currentUserId
+        followerId: currentUserId,
+        followingId: otherUserId
       }
     }
   });

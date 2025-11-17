@@ -2,7 +2,7 @@ import { postRegister, postLogin } from "./auth/auth.controller";
 import { getProfile, getProfileDetail, updateProfile } from "./profile/profile.controller";
 import { getUsers, getUserByUsername } from "./user/user.controller";
 import { uploadFile, deleteFile } from "./upload/upload.controller";
-import { follow, unfollow } from "./follow/follow.controller";
+import { follow, unfollow, getFollowers } from "./follow/follow.controller";
 
 export {
   postRegister,
@@ -15,5 +15,6 @@ export {
   uploadFile,
   deleteFile,
   follow,
-  unfollow
+  unfollow,
+  getFollowers
 };

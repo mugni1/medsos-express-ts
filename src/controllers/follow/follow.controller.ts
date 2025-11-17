@@ -8,6 +8,40 @@ import {
   updateFollowingCountService
 } from "../../services";
 import { response } from "../../../utils/response";
+import { getFollowersService, getFollowingsService } from "../../services/follow/follow.service";
+import { id } from "zod/v4/locales";
+
+export const getFollowers = async (req: Request, res: Response) => {
+  const userId = req.user_id as string;
+
+  try {
+    const followers = await getFollowersService({ userId });
+    return response({
+      res, status: 200, message: "Followers fetched successfully", data: {
+        id: userId,
+        followers: followers
+      }
+    });
+  } catch (error) {
+    return response({ res, status: 500, message: "Failed to fetch followers" });
+  }
+}
+
+export const getFollowings = async (req: Request, res: Response) => {
+  const userId = req.user_id as string;
+
+  try {
+    const followings = await getFollowingsService({ userId });
+    return response({
+      res, status: 200, message: "Followings fetched successfully", data: {
+        id: userId,
+        followings: followings
+      }
+    });
+  } catch (error) {
+    return response({ res, status: 500, message: "Failed to fetch followers" });
+  }
+}
 
 export const follow = async (req: Request, res: Response) => {
   const currentUserId = req.user_id as string;
@@ -64,7 +98,7 @@ export const unfollow = async (req: Request, res: Response) => {
     if (!unfollow) {
       return response({ res, status: 400, message: "Failed to unfollow" });
     }
-    
+
     await updateFollowerCountService({ userId: otherUserId, methode: 'decrement' });
     const results = await updateFollowingCountService({ userId: currentUserId, methode: 'decrement' });
     return response({ res, status: 200, message: "Unfollowed successfully", data: results });

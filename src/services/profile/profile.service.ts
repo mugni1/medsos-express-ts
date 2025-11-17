@@ -19,7 +19,7 @@ export const getProfileDetailByIdService = async ({ id }: { id: string }) => {
       posts: true,
       followers: {
         include: {
-          following: {
+          follower: {
             select: {
               id: true,
               name: true,
@@ -31,7 +31,7 @@ export const getProfileDetailByIdService = async ({ id }: { id: string }) => {
       },
       following: {
         include: {
-          follower: {
+          following: {
             select: {
               id: true,
               name: true,
