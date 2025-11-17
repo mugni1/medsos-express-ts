@@ -9,19 +9,13 @@ import {
 } from "../../services";
 import { response } from "../../../utils/response";
 import { getFollowersService, getFollowingsService } from "../../services/follow/follow.service";
-import { id } from "zod/v4/locales";
 
 export const getFollowers = async (req: Request, res: Response) => {
   const userId = req.user_id as string;
 
   try {
     const followers = await getFollowersService({ userId });
-    return response({
-      res, status: 200, message: "Followers fetched successfully", data: {
-        id: userId,
-        followers: followers
-      }
-    });
+    return response({ res, status: 200, message: "Followers fetched successfully", data: followers });
   } catch (error) {
     return response({ res, status: 500, message: "Failed to fetch followers" });
   }
@@ -32,12 +26,7 @@ export const getFollowings = async (req: Request, res: Response) => {
 
   try {
     const followings = await getFollowingsService({ userId });
-    return response({
-      res, status: 200, message: "Followings fetched successfully", data: {
-        id: userId,
-        followings: followings
-      }
-    });
+    return response({ res, status: 200, message: "Followings fetched successfully", data: followings });
   } catch (error) {
     return response({ res, status: 500, message: "Failed to fetch followers" });
   }

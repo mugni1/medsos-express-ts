@@ -5,10 +5,14 @@ export const getFollowersService = async ({ userId }: { userId: string }) => {
     where: {
       followingId: userId
     },
+    omit: {
+      followingId: true,
+    },
     include: {
       follower: {
         select: {
           id: true,
+          name: true,
           username: true,
           avatar: true
         }
@@ -22,10 +26,14 @@ export const getFollowingsService = async ({ userId }: { userId: string }) => {
     where: {
       followerId: userId
     },
+    omit: {
+      followerId: true
+    },
     include: {
       following: {
         select: {
           id: true,
+          name: true,
           username: true,
           avatar: true
         }
