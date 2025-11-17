@@ -29,7 +29,7 @@ export const getProfileDetailByIdService = async ({ id }: { id: string }) => {
           }
         }
       },
-      following: {
+      followings: {
         include: {
           following: {
             select: {
