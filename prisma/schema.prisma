@@ -11,6 +11,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  directUrl = env("DATABASE_URL_UNPOOLED")
   url      = env("DATABASE_URL")
 }
 
@@ -30,8 +31,8 @@ model User {
   posts           Post[]
   comments        Comment[]
   likes           Like[]
-  followers       Follow[] @relation("Followers")
-  following       Follow[] @relation("Following")
+  followers       Follow[] @relation("Following")
+  following       Follow[] @relation("Follower")
 }
 
 model Post {
@@ -70,7 +71,7 @@ model Like {
 model Follow {
   followerId      String   @db.Text
   followingId     String   @db.Text
-  follower        User     @relation("Followers", fields: [followerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  follower        User     @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   following       User     @relation("Following", fields: [followingId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([followerId, followingId])
 }
