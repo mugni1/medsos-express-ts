@@ -3,6 +3,7 @@ import { API_VERSION } from "utils/version";
 import { config } from "dotenv";
 import {
   authRoute,
+  feedRoute,
   followRoute,
   profileRoute,
   uploadRoute,
@@ -21,6 +22,7 @@ app.use(`${API_VERSION}/`, profileRoute)
 app.use(`${API_VERSION}/`, userRoute)
 app.use(`${API_VERSION}/`, uploadRoute)
 app.use(`${API_VERSION}/`, followRoute)
+app.use(`${API_VERSION}/`, feedRoute)
 
 // listen server
 const HOST = process.env.HOST_APP || '0.0.0.0';

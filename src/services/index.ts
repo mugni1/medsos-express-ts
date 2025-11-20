@@ -20,6 +20,7 @@ import {
   getFollowersService,
   getFollowingsService
 } from '@/services/follow.service'
+import { postFeedService, updatePostCountService } from '@/services/feed.service'
 
 export {
   getUserByEmailService,
@@ -38,4 +39,6 @@ export {
   getFollowingsService,
   updateFollowerCountService,
   updateFollowingCountService,
+  postFeedService,
+  updatePostCountService
 }

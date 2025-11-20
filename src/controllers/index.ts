@@ -3,6 +3,7 @@ import { getProfile, getProfileDetail, updateProfile } from "@/controllers/profi
 import { getUsers, getUsersRandom, getUserByUsername } from "@/controllers/user.controller";
 import { uploadFile, deleteFile } from "@/controllers/upload.controller";
 import { follow, unfollow, getFollowers } from "@/controllers/follow.controller";
+import { postFeed } from "@/controllers/feed.controller";
 
 export {
   postRegister,
@@ -17,5 +18,6 @@ export {
   deleteFile,
   follow,
   unfollow,
-  getFollowers
+  getFollowers,
+  postFeed
 };

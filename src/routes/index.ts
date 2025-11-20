@@ -3,11 +3,13 @@ import authRoute from "@/routes/auth.route";
 import userRoute from "@/routes/user.route";
 import uploadRoute from "@/routes/upload.route";
 import followRoute from "@/routes/follow.route";
+import feedRoute from "@/routes/feed.route";
 
 export {
   profileRoute,
   authRoute,
   userRoute,
   uploadRoute,
-  followRoute
+  followRoute,
+  feedRoute
 }
