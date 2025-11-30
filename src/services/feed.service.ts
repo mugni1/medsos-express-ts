@@ -22,3 +22,21 @@ export const updatePostCountService = async ({ userId }: { userId: string }) => 
     }
   })
 };
+
+export const getFeedByUserIdService = async ({ userId }: { userId: string }) => {
+  return await prisma.post.findMany({
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          avatar: true,
+        }
+      }
+    },
+    orderBy: {
+      createdAt: 'desc'
+    }
+  })
+};
