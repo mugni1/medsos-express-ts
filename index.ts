@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors"
 import { API_VERSION } from "utils/version";
 import { config } from "dotenv";
 import {
@@ -14,6 +15,7 @@ config()
 // init 
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 // routes
 app.get('/', (_, res) => { res.json({ message: 'Hello, World!' }) });

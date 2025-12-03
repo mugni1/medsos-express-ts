@@ -57,13 +57,13 @@ export const postLogin = async (req: Request, res: Response) => {
   // check email
   const emailExist = await getUserByEmailService(reqBody.email);
   if (!emailExist) {
-    return response({ res, status: 401, message: 'Invalid email or password' });
+    return response({ res, status: 400, message: 'Invalid email or password' });
   }
 
   // check password
   const isPasswordValid = await comparePassword(userData.password, emailExist.password);
   if (!isPasswordValid) {
-    return response({ res, status: 401, message: 'Invalid email or password' });
+    return response({ res, status: 400, message: 'Invalid email or password' });
   }
 
   // generate token 

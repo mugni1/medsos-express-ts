@@ -1,4 +1,5 @@
 import prisma from "@/config/prisma";
+import { string } from "zod";
 
 export const postFeedService = async ({ content, imageUrl, userId }: { content: string, imageUrl?: string, userId: string }) => {
   return await prisma.post.create({
@@ -25,12 +26,14 @@ export const updatePostCountService = async ({ userId }: { userId: string }) => 
 
 export const getFeedByUserIdService = async ({ userId }: { userId: string }) => {
   return await prisma.post.findMany({
+    where: {
+      userId: userId
+    },
     include: {
       user: {
         select: {
-          id: true,
+          username: true,
           name: true,
-          email: true,
           avatar: true,
         }
       }
@@ -40,3 +43,39 @@ export const getFeedByUserIdService = async ({ userId }: { userId: string }) => 
     }
   })
 };
+
+export const getAllFeedService = async () => {
+  return await prisma.post.findMany({
+    orderBy: {
+      createdAt: 'desc'
+    },
+    include: {
+      user: {
+        select: {
+          name: true,
+          avatar: true,
+          username: true
+        },
+      }
+    }
+  })
+}
+
+export const getDetailFeedByIdService = async ({ id }: { id: string }) => {
+  return await prisma.post.findUnique({
+    where: {
+      id: id
+    },
+    include: {
+      comments: true,
+      likes: true,
+      user: {
+        select: {
+          username: true,
+          name: true,
+          avatar: true,
+        }
+      }
+    }
+  })
+}
