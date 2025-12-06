@@ -54,3 +54,8 @@ export const getDetailFeedById = async (req: Request, res: Response) => {
     return response({ res, status: 500, message: 'Internal server error' });
   }
 }
+
+export const deleteFeedById = async (req: Request, res: Response) => {
+  const { id } = req.params
+  return response({ res, data: { id }, status: 200, message: 'Deleted successfully' });
+}
