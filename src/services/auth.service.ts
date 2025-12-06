@@ -1,5 +1,5 @@
-import prisma from "@/config/prisma"
-import { registerSchema } from "@/validations";
+import prisma from "../config/prisma"
+import { registerSchema } from "../validations";
 import { z } from "zod";
 
 export const postRegisterService = async (userData: z.infer<typeof registerSchema>) => {

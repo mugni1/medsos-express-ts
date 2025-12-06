@@ -1,5 +1,5 @@
-import { authorizationMiddleware } from '@/middlewares/auth.middleware';
-import { uploadMiddleware, handleMulterErrorMiddleware } from '@/middlewares/upload.middleware';
+import { authorizationMiddleware } from '../middlewares/auth.middleware';
+import { uploadMiddleware, handleMulterErrorMiddleware } from '../middlewares/upload.middleware';
 
 export {
   authorizationMiddleware,

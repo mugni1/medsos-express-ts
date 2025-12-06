@@ -1,5 +1,4 @@
-import prisma from "@/config/prisma";
-import { string } from "zod";
+import prisma from "../config/prisma";
 
 export const postFeedService = async ({ content, imageUrl, userId }: { content: string, imageUrl?: string, userId: string }) => {
   return await prisma.post.create({

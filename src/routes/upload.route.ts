@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { deleteFile, uploadFile } from "@/controllers";
-import { authorizationMiddleware, handleMulterErrorMiddleware, uploadMiddleware } from "@/middlewares";
+import { deleteFile, uploadFile } from "../controllers";
+import { authorizationMiddleware, handleMulterErrorMiddleware, uploadMiddleware } from "../middlewares";
 
 const router = Router();
 router.post("/upload", authorizationMiddleware, uploadMiddleware.single("file"), handleMulterErrorMiddleware, uploadFile);

@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors"
-import { API_VERSION } from "utils/version";
+import { API_VERSION } from "./utils/version";
 import { config } from "dotenv";
 import {
   authRoute,
@@ -9,7 +9,7 @@ import {
   profileRoute,
   uploadRoute,
   userRoute
-} from "@/routes";
+} from "./src/routes";
 config()
 
 // init 

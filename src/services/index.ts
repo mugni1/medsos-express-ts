@@ -1,16 +1,16 @@
-import { postRegisterService } from '@/services/auth.service';
+import { postRegisterService } from '../services/auth.service';
 import {
   getUserByEmailService,
   getUserByUsernameService,
   getUserService,
   getUserByIdService,
   getUserDetailByUsernameService
-} from '@/services/user.service';
+} from '../services/user.service';
 import {
   getProfileByIdService,
   updateProfileByIdService,
   getProfileDetailByIdService
-} from '@/services/profile.service'
+} from '../services/profile.service'
 import {
   checkFollowService,
   followService,
@@ -19,14 +19,14 @@ import {
   unfollowService,
   getFollowersService,
   getFollowingsService
-} from '@/services/follow.service'
+} from '../services/follow.service'
 import {
   postFeedService,
   updatePostCountService,
   getAllFeedService,
   getFeedByUserIdService,
   getDetailFeedByIdService
-} from '@/services/feed.service'
+} from '../services/feed.service'
 
 export {
   getUserByEmailService,

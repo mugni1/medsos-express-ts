@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { GetUserQueryParams } from "types/user.type";
-import { response } from "utils/response";
-import { getUserByUsernameService, getUserService } from "@/services/";
-import { getRandomNumber } from "utils/random";
+import { GetUserQueryParams } from "../../types/user.type";
+import { response } from "../../utils/response";
+import { getUserByUsernameService, getUserService } from "../services/";
+import { getRandomNumber } from "../../utils/random";
 
 export const getUsers = async (req: GetUserQueryParams, res: Response) => {
   const page = req.query.page || "1";

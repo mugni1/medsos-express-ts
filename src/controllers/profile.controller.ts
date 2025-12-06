@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { response } from "utils/response";
-import { updateProfileSchema } from "@/validations";
+import { response } from "../../utils/response";
+import { updateProfileSchema } from "../validations";
 import {
   getProfileByIdService,
   getUserByUsernameService,
   updateProfileByIdService,
   getProfileDetailByIdService
-} from "@/services";
+} from "../services";
 
 export const getProfile = async (req: Request, res: Response) => {
   const userId = req.user_id;
@@ -43,7 +43,7 @@ export const updateProfile = async (req: Request, res: Response) => {
   // validate
   const { success: successValidate, error: errorValidate, data: dataProfile } = updateProfileSchema.safeParse(reqBody);
   if (!successValidate) {
-    const errors = errorValidate.issues.map(err => ({
+    const errors = errorValidate.issues.map((err: any) => ({
       path: err.path.join('.'),
       message: err.message,
     }));

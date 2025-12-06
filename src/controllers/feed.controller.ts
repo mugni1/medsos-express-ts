@@ -1,13 +1,13 @@
-import { getFeedByUserIdService, postFeedService, updatePostCountService, getAllFeedService, getDetailFeedByIdService } from "@/services";
-import { postFeedSchema } from "@/validations";
+import { getFeedByUserIdService, postFeedService, updatePostCountService, getAllFeedService, getDetailFeedByIdService } from "../services";
+import { postFeedSchema } from "../validations";
 import { Request, Response } from "express";
-import { response } from "utils/response";
+import { response } from "../../utils/response";
 
 export const postFeed = async (req: Request, res: Response) => {
   const userId = req.user_id as string;
   const { error, success, data } = postFeedSchema.safeParse(req.body)
   if (!success) {
-    const errors = error.issues.map((err) => ({
+    const errors = error.issues.map((err: any) => ({
       path: err.path.join('.'),
       message: err.message
     }));

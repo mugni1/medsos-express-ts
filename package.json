@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "bun --watch index.ts",
     "start": "node dist/index.js",
-    "build": "bun run tsc"
+    "build": "bun x tsc"
   },
   "devDependencies": {
     "@types/bun": "latest",

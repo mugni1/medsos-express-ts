@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { getUserByUsername, getUsers, getUsersRandom } from '@/controllers';
-import { authorizationMiddleware } from '@/middlewares';
+import { getUserByUsername, getUsers, getUsersRandom } from '../controllers';
+import { authorizationMiddleware } from '../middlewares';
 
 const router = Router();
 router.get("/user", authorizationMiddleware, getUsers);

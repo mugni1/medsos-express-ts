@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { authorizationMiddleware } from '@/middlewares';
-import { follow, unfollow, getFollowers } from '@/controllers';
-import { getFollowings } from '@/controllers/follow.controller';
+import { authorizationMiddleware } from '../middlewares';
+import { follow, unfollow, getFollowers } from '../controllers';
+import { getFollowings } from '../controllers/follow.controller';
 
 const router = Router();
 router.get("/followers", authorizationMiddleware, getFollowers)

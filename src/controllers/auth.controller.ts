@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { registerSchema, loginSchema } from '@/validations';
-import { getUserByEmailService, postRegisterService, getUserByUsernameService } from '@/services';
-import { response } from 'utils/response';
-import { generateToken } from 'utils/jwt';
-import { comparePassword, hashedPassword } from 'utils/bcrypt';
+import { registerSchema, loginSchema } from '../validations';
+import { getUserByEmailService, postRegisterService, getUserByUsernameService } from '../services';
+import { response } from '../../utils/response';
+import { generateToken } from '../../utils/jwt';
+import { comparePassword, hashedPassword } from '../../utils/bcrypt';
 
 export const postRegister = async (req: Request, res: Response) => {
   const reqBody = req.body;
@@ -11,7 +11,7 @@ export const postRegister = async (req: Request, res: Response) => {
   // validate
   const { success: validateSuccess, error: validateError, data: userData } = registerSchema.safeParse(reqBody);
   if (!validateSuccess) {
-    const errors = validateError.issues.map(err => ({
+    const errors = validateError.issues.map((err: any) => ({
       path: err.path.join('.'),
       message: err.message,
     }));
@@ -47,7 +47,7 @@ export const postLogin = async (req: Request, res: Response) => {
   // validate
   const { data: userData, error: validateError, success: validateSuccess } = loginSchema.safeParse(reqBody)
   if (!validateSuccess) {
-    const errors = validateError.issues.map(err => ({
+    const errors = validateError.issues.map((err: any) => ({
       path: err.path.join('.'),
       message: err.message,
     }));
