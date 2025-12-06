@@ -22,8 +22,9 @@ app.use(`${version_1.API_VERSION}/`, routes_1.uploadRoute);
 app.use(`${version_1.API_VERSION}/`, routes_1.followRoute);
 app.use(`${version_1.API_VERSION}/`, routes_1.feedRoute);
 // listen server
-const HOST = process.env.HOST_APP || '0.0.0.0';
-const PORT = Number(process.env.PORT_APP) || 5050;
-app.listen(PORT, HOST, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+// const HOST = process.env.HOST_APP || '0.0.0.0';
+// const PORT = Number(process.env.PORT_APP) || 5050;
+// app.listen(PORT, HOST, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+exports.default = app;

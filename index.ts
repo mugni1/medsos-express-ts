@@ -27,8 +27,10 @@ app.use(`${API_VERSION}/`, followRoute)
 app.use(`${API_VERSION}/`, feedRoute)
 
 // listen server
-const HOST = process.env.HOST_APP || '0.0.0.0';
-const PORT = Number(process.env.PORT_APP) || 5050;
-app.listen(PORT, HOST, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// const HOST = process.env.HOST_APP || '0.0.0.0';
+// const PORT = Number(process.env.PORT_APP) || 5050;
+// app.listen(PORT, HOST, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+export default app;
