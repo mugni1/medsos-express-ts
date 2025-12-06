@@ -1,15 +1,6 @@
-import profileRoute from "../routes/profile.route";
-import authRoute from "../routes/auth.route";
-import userRoute from "../routes/user.route";
-import uploadRoute from "../routes/upload.route";
-import followRoute from "../routes/follow.route";
-import feedRoute from "../routes/feed.route";
-
-export {
-  profileRoute,
-  authRoute,
-  userRoute,
-  uploadRoute,
-  followRoute,
-  feedRoute
-}
+export { default as profileRoute } from "./profile.route";
+export { default as authRoute } from "./auth.route";
+export { default as userRoute } from "./user.route";
+export { default as uploadRoute } from "./upload.route";
+export { default as followRoute } from "./follow.route";
+export { default as feedRoute } from "./feed.route";

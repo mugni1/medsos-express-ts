@@ -5,16 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-// import { API_VERSION } from "./utils/version";
+const version_1 = require("./utils/version");
 const dotenv_1 = require("dotenv");
-// import {
-//   authRoute,
-//   feedRoute,
-//   followRoute,
-//   profileRoute,
-//   uploadRoute,
-//   userRoute
-// } from "./src/routes";
+const index_1 = require("./src/routes/index");
 (0, dotenv_1.config)();
 // init 
 const app = (0, express_1.default)();
@@ -22,12 +15,12 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 // routes
 app.get('/', (_, res) => { res.json({ message: 'Hello, World!' }); });
-// app.use(`${API_VERSION}/auth`, authRoute)
-// app.use(`${API_VERSION}/`, profileRoute)
-// app.use(`${API_VERSION}/`, userRoute)
-// app.use(`${API_VERSION}/`, uploadRoute)
-// app.use(`${API_VERSION}/`, followRoute)
-// app.use(`${API_VERSION}/`, feedRoute)
+app.use(`${version_1.API_VERSION}/auth`, index_1.authRoute);
+app.use(`${version_1.API_VERSION}/`, index_1.profileRoute);
+app.use(`${version_1.API_VERSION}/`, index_1.userRoute);
+app.use(`${version_1.API_VERSION}/`, index_1.uploadRoute);
+app.use(`${version_1.API_VERSION}/`, index_1.followRoute);
+app.use(`${version_1.API_VERSION}/`, index_1.feedRoute);
 // listen server
 // const HOST = process.env.HOST_APP || '0.0.0.0';
 // const PORT = Number(process.env.PORT_APP) || 5050;
