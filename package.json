@@ -1,11 +1,10 @@
 {
   "name": "media-social-api",
-  "module": "index.ts",
-  "type": "module",
   "private": true,
   "scripts": {
     "dev": "bun --watch index.ts",
-    "start": "bun index.ts"
+    "start": "node dist/index.js",
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/bun": "latest",
