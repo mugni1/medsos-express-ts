@@ -10,6 +10,7 @@ import {
 import { postFeedSchema } from "../validations";
 import { Request, Response } from "express";
 import { response } from "../../utils/response";
+import { del } from "@vercel/blob"
 
 export const postFeed = async (req: Request, res: Response) => {
   const userId = req.user_id as string;
@@ -75,11 +76,14 @@ export const deleteFeedById = async (req: Request, res: Response) => {
     return response({ res, status: 403, message: "Cannot delete this feed" })
   }
 
+  if (feed.image) {
+    await del(feed.image)
+  }
+
   const deleted = await deleteFeedByIdService({ id })
   if (!deleted) {
     return response({ res, status: 500, message: "Internal server error" })
   }
-  console.log(deleted)
 
   return response({ res, data: deleted, status: 200, message: 'Deleted successfully' });
 }
