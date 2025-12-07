@@ -25,7 +25,9 @@ import {
   updatePostCountService,
   getAllFeedService,
   getFeedByUserIdService,
-  getDetailFeedByIdService
+  getDetailFeedByIdService,
+  getFeedCountByIdService,
+  deleteFeedByIdService
 } from '../services/feed.service'
 
 export {
@@ -49,5 +51,7 @@ export {
   updatePostCountService,
   getFeedByUserIdService,
   getAllFeedService,
-  getDetailFeedByIdService
+  getDetailFeedByIdService,
+  getFeedCountByIdService,
+  deleteFeedByIdService
 }

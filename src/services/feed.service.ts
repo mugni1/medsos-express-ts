@@ -78,3 +78,19 @@ export const getDetailFeedByIdService = async ({ id }: { id: string }) => {
     }
   })
 }
+
+export const getFeedCountByIdService = async ({ id }: { id: string }) => {
+  return await prisma.post.count({
+    where: {
+      id: id
+    }
+  })
+}
+
+export const deleteFeedByIdService = async ({ id }: { id: string }) => {
+  return await prisma.post.delete({
+    where: {
+      id: id
+    }
+  })
+}

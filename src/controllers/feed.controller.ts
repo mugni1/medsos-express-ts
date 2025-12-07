@@ -1,4 +1,12 @@
-import { getFeedByUserIdService, postFeedService, updatePostCountService, getAllFeedService, getDetailFeedByIdService } from "../services";
+import {
+  getFeedByUserIdService,
+  postFeedService,
+  updatePostCountService,
+  getAllFeedService,
+  getDetailFeedByIdService,
+  getFeedCountByIdService,
+  deleteFeedByIdService
+} from "../services";
 import { postFeedSchema } from "../validations";
 import { Request, Response } from "express";
 import { response } from "../../utils/response";
@@ -56,6 +64,22 @@ export const getDetailFeedById = async (req: Request, res: Response) => {
 }
 
 export const deleteFeedById = async (req: Request, res: Response) => {
+  const userId = req.user_id as string
   const { id } = req.params
-  return response({ res, data: { id }, status: 200, message: 'Deleted successfully' });
+
+  const feed = await getDetailFeedByIdService({ id })
+  if (!feed) {
+    return response({ res, status: 404, message: "Feed not found" })
+  }
+  if (feed.userId != userId) {
+    return response({ res, status: 403, message: "Cannot delete this feed" })
+  }
+
+  const deleted = await deleteFeedByIdService({ id })
+  if (!deleted) {
+    return response({ res, status: 500, message: "Internal server error" })
+  }
+  console.log(deleted)
+
+  return response({ res, data: deleted, status: 200, message: 'Deleted successfully' });
 }
