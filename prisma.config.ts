@@ -10,6 +10,7 @@ export default defineConfig({
   },
   engine: "classic",
   datasource: {
+    directUrl: env("DATABASE_URL_UNPOOLED"),
     url: env("DATABASE_URL"),
   },
 });
