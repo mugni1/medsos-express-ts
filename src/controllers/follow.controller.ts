@@ -9,7 +9,7 @@ import {
   getFollowingsService,
   getFollowersService
 } from "../services";
-import { response } from "../../utils/response";
+import { response } from "../utils/response";
 
 export const getFollowers = async (req: Request, res: Response) => {
   const userId = req.user_id as string;

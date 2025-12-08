@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { decodeToken } from "../../utils/jwt";
-import { response } from "../../utils/response";
+import { decodeToken } from "../utils/jwt";
+import { response } from "../utils/response";
 import { getUserByIdService } from "../services";
 
 export const authorizationMiddleware = async (req: Request, res: Response, next: NextFunction) => {

@@ -1,4 +1,4 @@
-import { GetUsersParams } from "../../types/user.type";
+import { GetUsersParams } from "../types/user.type";
 import prisma from "../config/prisma";
 
 // export const getUserService = async ({ sortBy, orderBy, search, offset, limit }: GetUsersParams) => {

@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+      target: base  # atau 'base' untuk production
+    container_name: media-social-be
+    ports:
+      - "5050:5050"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - BUN_ENV=development
+    restart: unless-stopped
+    command: bun run dev

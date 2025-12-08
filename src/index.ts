@@ -9,7 +9,7 @@ import {
   profileRoute,
   uploadRoute,
   userRoute
-} from "./src/routes/index";
+} from "./routes/index";
 config()
 
 // init 

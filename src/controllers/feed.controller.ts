@@ -9,7 +9,7 @@ import {
 } from "../services";
 import { postFeedSchema } from "../validations";
 import { Request, Response } from "express";
-import { response } from "../../utils/response";
+import { response } from "../utils/response";
 import { del } from "@vercel/blob"
 
 export const postFeed = async (req: Request, res: Response) => {

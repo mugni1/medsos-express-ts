@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { response } from "../../utils/response";
+import { response } from "../utils/response";
 import { updateProfileSchema } from "../validations";
 import {
   getProfileByIdService,
