@@ -11,6 +11,7 @@ import { postFeedSchema } from "../validations";
 import { Request, Response } from "express";
 import { response } from "../utils/response";
 import { del } from "@vercel/blob"
+import redis from "../config/redis";
 
 export const postFeed = async (req: Request, res: Response) => {
   const userId = req.user_id as string;
@@ -44,7 +45,18 @@ export const getFeedByUserId = async (req: Request, res: Response) => {
 
 export const getAllFeeds = async (req: Request, res: Response) => {
   try {
+    const cacheKey = "feed:all"
+    const cache = await redis.get(cacheKey);
+    // check cache
+    if (cache) {
+      console.log(cacheKey + " ⚡ from redis")
+      return response({ res, data: JSON.parse(cache), status: 200, message: 'Get feeds successfully' });
+    }
+
+    // query to db and save to cache
     const results = await getAllFeedService()
+    await redis.set(cacheKey, JSON.stringify(results), "EX", 60)
+
     return response({ res, data: results, status: 200, message: 'Get feeds successfully' });
   } catch {
     return response({ res, status: 500, message: 'Internal server error' });
@@ -54,10 +66,19 @@ export const getAllFeeds = async (req: Request, res: Response) => {
 export const getDetailFeedById = async (req: Request, res: Response) => {
   const { id } = req.params
   try {
+    const cacheKey = `feed:${id}`
+    const cache = await redis.get(cacheKey)
+    if (cache) {
+      console.log(cacheKey + " ⚡ from redis")
+      return response({ res, data: JSON.parse(cache), status: 200, message: 'Get feed successfully' });
+    }
+    
     const results = await getDetailFeedByIdService({ id: id })
     if (!results) {
       return response({ res, data: null, status: 404, message: 'Feed not found' });
     }
+    await redis.set(cacheKey, JSON.stringify(results), "EX", 500)
+    
     return response({ res, data: results, status: 200, message: 'Get feed successfully' });
   } catch {
     return response({ res, status: 500, message: 'Internal server error' });
